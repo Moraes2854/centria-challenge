@@ -2,7 +2,7 @@ import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ApolloDriver } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+// import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 
 import { ProyectoModule } from './proyecto/proyecto.module';
 import { DeveloperModule } from './developer/developer.module';
@@ -17,9 +17,9 @@ import { ResolverModule } from './resolver/resolver.module';
       useFactory:async()=>({
         playground: false,
         autoSchemaFile: join( process.cwd(), 'src/schema.gql'),
-        plugins:[
-          ApolloServerPluginLandingPageLocalDefault
-        ],
+        // plugins:[
+        //   ApolloServerPluginLandingPageLocalDefault
+        // ],
       })
     }),
     CommonModule,
