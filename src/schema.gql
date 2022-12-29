@@ -1,0 +1,97 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Especialidad {
+  id: ID!
+  nombre: String!
+}
+
+type Developer {
+  id: ID!
+  nombre: String!
+  email: String!
+  status: Status!
+  especialidades: [Especialidad!]!
+  proyectos: [Proyecto!]
+}
+
+enum Status {
+  ENABLED
+  DISABLED
+}
+
+type Proyecto {
+  id: ID!
+  nombre: String!
+  descripcion: String!
+  status: Status!
+  especialidadesValidas: [Especialidad!]!
+  devs: [Developer!]
+}
+
+type Query {
+  findAllDevelopers(especialidades: [String!] = [], proyectos: [String!] = []): [Developer!]!
+  findOneDeveloper(id: String!): Developer!
+  findAllEspecialidades: [Especialidad!]!
+  findOneEspecialidad(id: ID!): Especialidad!
+  findAllProyectos(especialidades: [String!] = [], status: Status = ENABLED): [Proyecto!]!
+  findOneProyecto(id: String!): Proyecto!
+}
+
+type Mutation {
+  createDeveloper(createDeveloperInput: CreateDeveloperInput!): Developer!
+  updateDeveloper(updateDeveloperInput: UpdateDeveloperInput!): Developer!
+  removeDeveloper(id: String!): Developer!
+  createEspecialidad(createEspecialidadInput: CreateEspecialidadInput!): Especialidad!
+  updateEspecialidad(updateEspecialidadInput: UpdateEspecialidadInput!): Especialidad!
+  removeEspecialidad(id: ID!): Especialidad!
+  addDevToProyecto(addDevToProyectInput: AddDevToProyectInput!): Boolean!
+  createProyecto(createProyectoInput: CreateProyectoInput!): Proyecto!
+  updateProyecto(updateProyectoInput: UpdateProyectoInput!): Proyecto!
+  removeProyecto(id: String!): Proyecto!
+}
+
+input CreateDeveloperInput {
+  nombre: String!
+  email: String!
+  especialidades: [String!]!
+  status: Status!
+}
+
+input UpdateDeveloperInput {
+  nombre: String
+  email: String
+  especialidades: [String!]
+  status: Status
+  id: ID!
+}
+
+input CreateEspecialidadInput {
+  nombre: String!
+}
+
+input UpdateEspecialidadInput {
+  nombre: String
+  id: ID!
+}
+
+input AddDevToProyectInput {
+  devID: ID!
+  proyectID: ID!
+}
+
+input CreateProyectoInput {
+  nombre: String!
+  descripcion: String!
+  status: Status!
+  especialidadesValidas: [String!]!
+}
+
+input UpdateProyectoInput {
+  nombre: String
+  descripcion: String
+  status: Status
+  especialidadesValidas: [String!]
+  id: ID!
+}
